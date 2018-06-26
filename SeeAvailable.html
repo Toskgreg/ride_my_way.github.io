@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>SeeAvailable</title>
+    <style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        background: url(greg4.jpg) no-repeat center center fixed; 
+		
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+    }
+    h1 {
+        color: #2A6A90;
+        text-decoration: underline;
+        -webkit-text-decoration-color: #FFCD00;
+        text-decoration-color: #FFCD00;
+    }
+    #content {
+      position: relative;
+            z-index: 10;
+            width: 340px;
+            margin: 250px 500px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 80px;
+    }
+    #background {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.8;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+    .formElement {
+        color: white;
+        font-size: 18px;
+        background-color: #2A6A90;
+        border: 1px solid #2A6A90;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        width: 140px;
+        padding: 5px;
+    }
+    input {
+        font-size: 14px;
+        padding: 7px;
+    }
+    #home {
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+        border-top: 2px solid #2A6A90;
+        border-bottom: 1px solid white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: 0px;
+        width: 280px;
+    }
+    #destination {
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+        border-bottom: 2px solid #2A6A90;
+        border-top: 1px solid #aaaaaa;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 280px;
+    }
+    #dateTime {
+        border: 2px solid #2A6A90;
+        border-radius: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 280px;
+    }
+    #select {
+        width: 180px;
+    }
+    .noAvailable {
+        font-size: 16px;
+        color:#2A6A90;
+        background-color:white;
+        border: 2px solid #2A6A90;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 180px;
+        padding: 10px;
+    }
+    button {
+        display: block;
+        font-size: 16px;
+        color: #2A6A90;
+        background-color: white;
+        border-top: 1px solid #2A6A90;
+        border-bottom: 1px solid #2A6A90;
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 160px;
+        padding: 8px;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    button:hover {
+        color: steelblue;
+        background-color:lightgray;
+        border-top: 1px solid #2A6A90;
+        border-bottom: 1px solid #2A6A90;
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+    }
+    #top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-top: 2px solid #2A6A90;
+    }
+    #bottom {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: 2px solid #2A6A90;
+        margin-bottom: 20px;
+    }
+    #topAndBottom {
+        border-top: 2px solid #2A6A90;
+        border-bottom: 2px solid #2A6A90;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    #back {
+        font-size: 18px;
+        width: 160px;
+        color: white;
+        background-color: #3AFF00;
+        border: 2px solid #3AFF00;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        margin-bottom: 0px;
+    }
+    #back span {
+        cursor: pointer;
+        position: relative;
+        transition: 0.5s;
+    }
+    #back:hover {
+        background-color: #3AFF00;
+        border: 2px solid #3AFF00;
+    }
+    #back span:before {
+        content: '\00ab';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: -20px;
+        transition: 0.5s;
+    }
+    #back:hover span {
+        padding-left: 20px;
+    }
+    #back:hover span:before{
+        opacity: 1;
+        left: 0;
+    }
+    </style>
+</head>
+<body onload="loadPage()">
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <form autocomplete="on" method="POST">
+            <p class="formElement">Start Carpool</p>
+            <input type="text" id="home" placeholder="Enter your place name or address" required>
+            <input type="text" id="destination" placeholder="Enter your destination in campus" required>
+            <p class="formElement">Depart Time</p>
+            <input type="text" id="dateTime" placeholder="Format: Jan 1, 09:00 A.M" required>
+        </form>
+        <p class="formElement" id="select"></p>
+        <button id="back" onclick="back()"><span>Back</span></button>
+
+    </div>
+    <script>
+        var pickUp = sessionStorage.getItem("pickUp");
+        var dropOff = sessionStorage.getItem("dropOff");
+        var date = sessionStorage.getItem("date");
+
+        function loadPage() {
+            document.getElementById("home").value = pickUp;
+            document.getElementById("destination").value = dropOff;
+            document.getElementById("dateTime").value = date;
+
+            document.getElementById("home").readOnly = true;
+            document.getElementById("destination").readOnly = true;
+            document.getElementById("dateTime").readOnly = true;
+
+            var available = [];
+            var userType = sessionStorage.getItem("userType");
+            if (userType == "passenger") {
+                document.getElementById("select").innerHTML = "Select Driver";
+                document.getElementById("select").setAttribute("style", "width: 140px");
+            }
+            else {
+                document.getElementById("select").innerHTML = "Select Passengers";
+                document.getElementById("select").setAttribute("style", "width: 180px");
+            }
+            var retrieved = (userType == "passenger") ? localStorage.getItem("driverArray") : localStorage.getItem("passengerArray");
+            var array = JSON.parse(retrieved);
+            for (var i = 0; i < array.length; i++) {
+                var retrieved = localStorage.getItem(array[i]);
+                var user = JSON.parse(retrieved);
+                var curTrip = (userType == "passenger") ? user.driver.currentTrip : user.passenger.currentTrip;
+                if (!curTrip) {
+                    continue;
+                }
+                else if (curTrip.pickUp == pickUp && curTrip.dropOff == dropOff && curTrip.date == date) {
+                    available.push(array[i]);
+                }
+            }
+
+            if (available.length == 0) {
+                var para = document.createElement("P");
+                para.setAttribute("class", "noAvailable");
+                para.setAttribute("id", "topAndBottom");
+                var text = (userType == "passenger") ? document.createTextNode("No available drivers") : document.createTextNode("No available passengers");
+                para.appendChild(text);
+
+                var select = document.getElementById("select");
+                select.parentNode.insertBefore(para, select.nextSibling);
+                return;
+            }
+            for (var i = 0; i < available.length; i++) {
+                var button = document.createElement("BUTTON");
+                if ( available.length == 1 ) {
+                    button.setAttribute("id", "topAndBottom");
+                }
+                else if ( i == 0 ) { // if current trip is the top element
+                    button.setAttribute("id", "bottom");
+                }
+                else if (i == available.length - 1) { // if the current trip is the bottom element
+                    button.setAttribute("id", "top");
+                }
+
+                var retrieved = localStorage.getItem(available[i]);
+                var availableName = JSON.parse(retrieved).name;
+
+                var text = document.createTextNode(availableName);
+                button.appendChild(text);
+                button.setAttribute("value", availableName);
+                button.setAttribute("name", available[i]);
+                button.setAttribute("onclick", "submit(this.value, this.name)");
+                var select = document.getElementById("select");
+                select.parentNode.insertBefore(button, select.nextSibling);
+            }
+        }
+        function submit(availableName, availableId) {
+            sessionStorage.setItem("availableName", availableName);
+            sessionStorage.setItem("availableId", availableId);
+            window.location.href = "ChatRoom.html";
+        }
+        function back() {
+            window.location.href = "StartCarpool.html";
+        }
+    </script>
+</body>
+</html>
