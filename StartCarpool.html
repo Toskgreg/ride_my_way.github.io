@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Offer Ride</title>
+    <style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        background: url(greg4.jpg) no-repeat center center fixed; 
+		
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+    }
+    h1 {
+        color: #2A6A90;
+        text-decoration: underline;
+        -webkit-text-decoration-color: #FFCD00;
+        text-decoration-color: #FFCD00;
+    }
+    #content {
+       position: relative;
+            z-index: 10;
+            width: 340px;
+            margin: 250px 500px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 80px;
+    }
+    #background {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.8;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+    .formElement {
+        color: white;
+        font-size: 18px;
+        background-color: #2A6A90;
+        border: 1px solid #2A6A90;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        width: 140px;
+        padding: 5px;
+    }
+    input {
+        font-size: 14px;
+        padding: 7px;
+    }
+    #home {
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+        border-top: 2px solid #2A6A90;
+        border-bottom: 1px solid white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: 0px;
+        width: 280px;
+    }
+    #destination {
+        border-left: 2px solid #2A6A90;
+        border-right: 2px solid #2A6A90;
+        border-bottom: 2px solid #2A6A90;
+        border-top: 1px solid #aaaaaa;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 280px;
+    }
+    #dateTime {
+        border: 2px solid #2A6A90;
+        border-radius: 10px;
+        width: 280px;
+    }
+    button {
+        font-size: 18px;
+        color: white;
+        background-color: #3AFF00;
+        border: 2px solid #3AFF00;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 8px;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    button span {
+        cursor: pointer;
+        position: relative;
+        transition: 0.5s;
+    }
+    button:hover {
+        background-color:#3AFF00;
+        border: 2px solid #3AFF00;
+    }
+    #find {
+        width: 180px;
+    }
+    #find span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    #find:hover span {
+        padding-right: 20px;
+    }
+    #find:hover span:after{
+        opacity: 1;
+        right: 0;
+    }
+    #back {
+        width: 100px;
+    }
+    #back span:before {
+        content: '\00ab';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: -20px;
+        transition: 0.5s;
+    }
+    #back:hover span {
+        padding-left: 20px;
+    }
+    #back:hover span:before{
+        opacity: 1;
+        left: 0;
+    }
+    </style>
+</head>
+<body onload="update()">
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <form autocomplete="on" method="POST">
+            <p class="formElement">Offer Ride</p>
+            <input type="text" id="home" placeholder="Enter your pickup loaction" required>
+            <input type="text" id="destination" placeholder="Enter your end destination " required>
+            <p class="formElement">Depart Time</p>
+            <input type="text" id="dateTime" placeholder="Format: Jan 1, 09:00 A.M" required>
+        </form>
+        <button id="back" onclick="back()"><span>Back</span></button>
+        <button id="find" onclick="submit()" ></button>
+    </div>
+</body>
+<script>
+    function update() {
+        var userType = sessionStorage.getItem("userType");
+        if (userType == "passenger") {
+            document.getElementById("find").innerHTML = "<span>Find Drivers</span>";
+        }
+        else {
+            document.getElementById("find").innerHTML = "<span>Find Passengers</span>";
+        }
+    }
+    function TripForPassenger(date, pickUp, dropOff, driver) {
+        this.date = date;
+        this.pickUp = pickUp;
+        this.dropOff = dropOff;
+        this.driver = driver;
+    }
+    function TripForDriver(date, pickUp, dropOff, passengers) {
+        this.date = date;
+        this.pickUp = pickUp;
+        this.dropOff = dropOff;
+        this.passengers = passengers;
+    }
+    function submit() {
+        var pickUp = document.getElementById("home").value;
+        var dropOff = document.getElementById("destination").value;
+        var date = document.getElementById("dateTime").value;
+
+        if ( !(pickUp && dropOff && date) ) {
+            alert("Please enter all the required fields");
+            return;
+        }
+
+        var username = sessionStorage.getItem("user");
+        var retrievedObj = localStorage.getItem(username);
+        var userObj = JSON.parse(retrievedObj); 
+        
+        var userType = sessionStorage.getItem("userType");
+        if (userType == "passenger") {
+            userObj.passenger.currentTrip = new TripForPassenger(pickUp, dropOff, date, null);
+            localStorage.setItem(username, JSON.stringify(userObj));
+        }
+        else {
+            userObj.driver.currentTrip = new TripForDriver(pickUp, dropOff, date, null);
+            localStorage.setItem(username, JSON.stringify(userObj));
+        }
+
+        sessionStorage.setItem("pickUp", pickUp);
+        sessionStorage.setItem("dropOff", dropOff);
+        sessionStorage.setItem("date", date);
+
+        window.location.href = "SeeAvailable.html";
+    }
+    function back() {
+        window.location.href = "MyAccount.html"
+    }
+</script>
+</html>
