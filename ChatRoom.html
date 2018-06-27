@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+             background: url(greg4.jpg) no-repeat center center fixed; 
+		
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+                background-size: cover;
+        }
+        h1 {
+            color: #2A6A90;
+            text-decoration: underline;
+            -webkit-text-decoration-color: #FFCD00;
+            text-decoration-color: #FFCD00;
+        }
+        #content {
+             position: relative;
+            z-index: 10;
+            width: 340px;
+            margin: 125px 500px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 80px;
+        }
+        #background {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.8;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        #TopButtons {
+            border:1px;
+            padding:2px;
+            height: 40px;
+            width: inherit;
+            margin-bottom: 10px;
+        }
+        #ChatBody {
+            border:1px;
+            padding:2px;
+        }
+        #ChatContent {
+            height: 350px;
+            overflow-y: auto;
+            z-index: 5;
+            width: 260px;
+            padding: 5px;
+            margin: 15px;
+        }
+        #ChatBtn {
+            border-top:1px;
+            padding:2px;
+            border-radius:10px;
+        }
+        #heading {
+            font-size: 18px;
+            color:white;
+            background-color:#3AFF00;
+            border: 2px solid #3AFF00;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;
+            margin-bottom: 20px;
+            width: 220px;
+            padding: 5px;
+        }
+        .ChatRight {
+            width: 180px;
+            padding: 2px;
+            color: black;
+            background-color: rgb(91, 195, 255);
+            margin-left: 70px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: smaller;
+            outline:none;
+            opacity: 0.7;
+        }
+        .ChatLeft {
+            width: 180px;
+            padding: 2px;
+            color: black;
+            background-color: rgb(253, 218, 78);
+            margin-right: 70px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: smaller;
+            outline: none;
+            opacity: 0.7;
+        }
+        .input {
+            font-size: 15px;
+            border: 2px solid #2A6A90;
+            border-radius: 5px;
+            margin-bottom: 0px;
+            width: 250px;
+            padding: 8px;
+            outline:none;
+        }
+        button {
+            font-size: 18px;
+            color: white;
+            background-color: #3AFF00;
+            border: 2px solid #3AFF00;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 16px;
+            margin-bottom: 0px;
+            padding: 5px;
+            transition: all 0.5s;
+            cursor: pointer;
+            width: 120px;
+            outline:none;
+        }
+        button span {
+            cursor: pointer;
+            position: relative;
+            transition: 0.5s;
+        }
+        button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -15px;
+            transition: 0.5s;
+        }
+        button:hover {
+            background-color:#3AFF00;
+            border: 2px solid #3AFF00;
+        }
+        button:hover span {
+            padding-right: 15px;
+        }
+        button:hover span:after{
+            opacity: 1;
+            right: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 1px;
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+            background: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1 ></h1>
+    <div id="content">
+        <div id="background"></div>
+        <div id="TopButtons">
+            <button onclick="location.href='./SeeAvailable.html'">Back</button>
+            <button onclick="confirmTrip()"><span>Confirm</span></button>
+        </div>
+        <div id="ChatBody" onload="updateChat()">
+            <div id="ChatContent"></div>
+            <div id="ChatBtn">
+                <form method="post" name="chat">
+                    <textarea rows="1" class="input" name="ChatValue" ></textarea> 
+                    <button onclick="ChatSend(this.form);" >Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+
+        function TripForPassenger(date, pickUp, dropOff, driver) {
+            this.date = date;
+            this.pickUp = pickUp;
+            this.dropOff = dropOff;
+            this.driver = driver;
+        }
+
+        function TripForDriver(date, pickUp, dropOff, passenger) {
+            this.date = date;
+            this.pickUp = pickUp;
+            this.dropOff = dropOff;
+            this.passenger = passenger;
+        }
+
+        function confirmTrip() {
+            var date = sessionStorage.getItem("date");
+            var pickUp = sessionStorage.getItem("pickUp");
+            var dropOff = sessionStorage.getItem("dropOff");
+            var availableName = sessionStorage.getItem("availableName");
+
+            var username = sessionStorage.getItem("user");
+            var retrieved = localStorage.getItem(username);
+            var user = JSON.parse(retrieved);
+
+            var userType = sessionStorage.getItem("userType");
+            if (userType == "passenger") {
+                var trip = new TripForPassenger(date, pickUp, dropOff, availableName);
+                user.passenger.upcomingTrips.push(trip);
+                localStorage.setItem(username, JSON.stringify(user));
+            }
+            else {
+                var trip = new TripForDriver(date, pickUp, dropOff, availableName);
+                user.driver.upcomingTrips.push(trip);
+                localStorage.setItem(username, JSON.stringify(user));
+            }
+            window.location.href = './YourTrips.html';
+        }
+
+        function Message(sender, message) {
+            this.sender = sender;
+            this.message = message;
+        }
+
+        function ChatID(user1, user2){
+            this.u1 = user2 < user1 ? user2 : user1;
+            this.u2 = user2 < user1 ? user1 : user2;
+        }
+
+        var user1 = sessionStorage.getItem("user");
+        var user2 = sessionStorage.getItem("availableId");
+        var chatID = JSON.stringify(new ChatID(user1, user2));
+
+        function ChatSend(form){
+            var messageList = localStorage.getItem(chatID) ? JSON.parse(localStorage.getItem(chatID)) : [];
+
+            var message = form.ChatValue;
+            if (message.value.length>0) {
+                messageList.push(new Message(user1, message.value));
+                message.value = '';
+            }
+
+            localStorage.setItem(chatID, JSON.stringify(messageList));
+            updateChat();
+        }
+
+        function updateChat() {
+            var inp = (localStorage.getItem(chatID))? JSON.parse(localStorage.getItem(chatID)): [];
+            document.getElementById("ChatContent").innerHTML = '';
+            for(var i = 0; i < inp.length; i++) {
+                var message = inp[i];
+                if (message.sender === user1) {
+                    document.getElementById("ChatContent").innerHTML += '<div class=ChatRight contenteditable="true"><p>' + message.message + '</p></div>';
+                }
+                else {
+                    document.getElementById("ChatContent").innerHTML += '<div class=ChatLeft contenteditable="true"><p>' + message.message + '</p></div>';
+                }
+            }
+        }
+        setTimeout("updateChat();",100);
+    </script>
+</body>
+</html>
