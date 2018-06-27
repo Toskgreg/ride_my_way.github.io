@@ -27,4 +27,5 @@ Ride-my App is a carpooling application that provides drivers with the ability t
 
 ## Coveralls test Coverage Status
 
+<a href='https://coveralls.io/github/Toskgreg/ridemyway_final?branch=develop'><img src='https://coveralls.io/repos/github/Toskgreg/ridemyway_final/badge.svg?branch=develop' alt='Coverage Status' /></a>
 
