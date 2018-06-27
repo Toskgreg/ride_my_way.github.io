@@ -11,7 +11,7 @@
     <div id="content">
         <div id="background"></div>
         <p id="heading">My Account</p>
-        <button class="button" onclick="location.href='./StartCarpool.html'"><span>Start Carpool</span></button>
+        <button class="button" id="switch1" onclick="location.href='./StartCarpool.html'"></button>
         <button class="button" onclick="location.href='./YourTrips.html'"><span>Trip History</span></button>
         <button class="button" onclick="location.href='./Payment.html'"><span>Payment</span></button>
         <button class="button" id="switch" onclick="switchTo()"></button>
@@ -22,10 +22,13 @@
             var userType = sessionStorage.getItem("userType");
             if (userType == "passenger") {
                 document.getElementById("switch").innerHTML = "<span>Switch to Driver</span>";
+                document.getElementById("switch1").innerHTML = "<span>Request Ride</span>";
             }
             else {
                 document.getElementById("switch").innerHTML = "<span>Switch to Passenger</span>";
+                document.getElementById("switch1").innerHTML = "<span>Offer ride</span>";
             }
+           
         }
         function Passenger() {
             this.currentTrip = null;
