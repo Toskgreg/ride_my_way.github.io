@@ -1,0 +1,5 @@
+{
+  "test_views.py::TestCase": true,
+  "test_views.py::TestClass": true,
+  "test_views.py::TestClass::test_request_for_ride": true
+}

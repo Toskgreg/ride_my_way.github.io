@@ -8,7 +8,7 @@
 from flask import request, jsonify
 from flask.views import MethodView
 
-from api.models.RideModel import RideModel
+from api.RideModel import RideModel
 from api.utils import Utils
 
 """

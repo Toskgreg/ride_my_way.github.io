@@ -11,7 +11,7 @@ sys.path.append(os.path.pardir)
 
 from api.config import Config
 from api.handlers import ErrorHandlers
-from api.urls import Urls
+from api.views import Urls
 
 
 class Server(Flask):

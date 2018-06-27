@@ -1,0 +1,8 @@
+[
+  "test_views.py::TestClass::test_delete_ride",
+  "test_views.py::TestClass::test_get_one_ride",
+  "test_views.py::TestClass::test_get_rides",
+  "test_views.py::TestClass::test_post_ride",
+  "test_views.py::TestClass::test_request_for_ride",
+  "test_views.py::TestClass::test_update_ride"
+]
