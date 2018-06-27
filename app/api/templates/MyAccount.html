@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>MyAccount</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle7.css">
+</head>
+<body onload = "update()">
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <p id="heading">My Account</p>
+        <button class="button" id="switch1" onclick="location.href='./StartCarpool.html'"></button>
+        <button class="button" onclick="location.href='./YourTrips.html'"><span>Trip History</span></button>
+        <button class="button" onclick="location.href='./Payment.html'"><span>Payment</span></button>
+        <button class="button" id="switch" onclick="switchTo()"></button>
+        <button class="button" id="logout" onclick="location.href='./Login.html'"><span>Log Out</span></button>
+    </div>
+    <script>
+        function update() {
+            var userType = sessionStorage.getItem("userType");
+            if (userType == "passenger") {
+                document.getElementById("switch").innerHTML = "<span>Switch to Driver</span>";
+                document.getElementById("switch1").innerHTML = "<span>Request Ride</span>";
+            }
+            else {
+                document.getElementById("switch").innerHTML = "<span>Switch to Passenger</span>";
+                document.getElementById("switch1").innerHTML = "<span>Offer ride</span>";
+            }
+           
+        }
+        function Passenger() {
+            this.currentTrip = null;
+            this.upcomingTrips = [];
+            this.pastTrips = [];
+        }
+        function switchTo() {
+            var userType = sessionStorage.getItem("userType");
+
+            var username = sessionStorage.getItem("user");
+            var retrieved = localStorage.getItem(username);
+            var user = JSON.parse(retrieved); 
+
+            if (userType == "passenger") {
+                sessionStorage.setItem("userType", "driver");
+                user.userType = "driver";
+                if (user.driver == null) {
+                    window.location.href = "SwitchToDriver.html";
+                    return;
+                }
+            }
+            else {
+                sessionStorage.setItem("userType", "passenger");
+                user.userType = "passenger";
+                if (user.passenger == null) {
+                    user.passenger = new Passenger();
+                    localStorage.setItem(username, JSON.stringify(user));
+                }
+            }
+            update();
+        }
+    </script>
+</body>
+</html>

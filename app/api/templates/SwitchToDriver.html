@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>SwitchToDriver</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle10.css">
+</head>
+<body>
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <p id="heading">Driver Sign-up</p>
+        <form autocomplete="on" method="POST">
+            <p class="formElement">Vehicle Model</p>
+            <input type="text" id="vehicle" placeholder="Vehicle Model" required>
+            <p class="formElement">Driver's license</p>
+            <input type="text" id="license" placeholder="Driver's license" required>
+        </form>
+        <button class="button" onclick="next()"><span>Next</span></button>
+    </div>
+
+    <script>
+        function Driver(vehicle, license) {
+            this.vehicle = vehicle;
+            this.license = license;
+            this.currentTrip = null;
+            this.upcomingTrips = [];
+            this.pastTrips = [];
+        }
+
+        function next() {
+            var vehicle = document.getElementById("vehicle").value;
+            var license = document.getElementById("license").value;
+
+            if ( !(vehicle && license) ) {
+                alert("Please enter all the required fields");
+                return;
+            }
+
+            var username = sessionStorage.getItem("user");
+            var retrieved = localStorage.getItem(username);
+            var user = JSON.parse(retrieved); 
+
+            var driver = new Driver(vehicle, license);
+            user.driver = driver;
+
+            localStorage.setItem(username, JSON.stringify(user));
+            window.location.href = "MyAccount.html";
+
+        }
+    </script>
+</body>
+</html>

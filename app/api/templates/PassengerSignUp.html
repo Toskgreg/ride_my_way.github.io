@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>PassengerSignUp</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle1.css">
+</head>
+<body>
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <p id="heading">Passenger Sign-up</p>
+        <form autocomplete="on" method="POST">
+            <p class="formElement">Name</p>
+            <input type="text" id="name" placeholder="Name" required>
+            <p class="formElement">Phone Number</p>
+            <input type="text" id="phonenumber" placeholder="Phonenumber" required>
+            <p class="formElement">Email</p>
+            <input type="email" id="email" placeholder="Email" required>
+            <p class="formElement">User Name</p>
+            <input type="text" id="username" placeholder="User Name" required>
+            <p class="formElement">Password</p>
+            <input type="password" id="password" placeholder="Password" required>
+        </form>
+        <button onclick="next()"><span>Next</span></button>
+        <p id="signin">Have an account? <a href="./Login.html">Log In</a></p>
+    </div>
+    <script >
+    function Passenger() {
+            this.currentTrip = null;
+            this.upcomingTrips = [];
+            this.pastTrips = [];
+        }
+        function User(name, PID, email, username, password, driver, passenger, userType) {
+            this.name = name;
+            this.phonenumber = phonenumber;
+            this.email = email;
+            this.username = username;
+            this.password = password;
+            this.driver = driver;
+            this.passenger = passenger;
+            this.userType = userType;
+        }
+        function next() {
+            var name = document.getElementById("name").value;
+            var phonenumber = document.getElementById("phonenumber").value;
+            var email = document.getElementById("email").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if ( !(name && phonenumber && email && username && password) ) {
+                alert("Please enter all the required fields");
+                return;
+            }
+    
+            var passenger = new Passenger();
+            var user = new User(name, phonenumber, email, username, password, null, passenger, "passenger");
+
+            if ( localStorage.getItem(username) ) {
+                alert("Username is used. Please change one.");
+            }
+            else {
+                localStorage.setItem(username, JSON.stringify(user));
+                sessionStorage.setItem("userType", "passenger");
+                window.location.href = "Login.html";
+            }
+
+            var retrieved = localStorage.getItem("passengerArray");
+            if (retrieved == null) {
+                var passengerArray = [];
+                passengerArray.push(username);
+                localStorage.setItem("passengerArray", JSON.stringify(passengerArray));
+            }
+            else {
+                var passengerArray = JSON.parse(retrieved);
+                passengerArray.push(username);
+                localStorage.setItem("passengerArray", JSON.stringify(passengerArray));
+            }
+        }
+    </script>
+</body>
+</html>

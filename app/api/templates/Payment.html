@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle13.css">
+</head>
+<body>
+    <h1></h1>
+    <div id="content">
+        <div id="background"></div>
+        <p id="heading">Payment</p>
+        <form autocomplete="on" method="POST">
+            <p class="formElement">Name</p>
+            <input type="text" id="name" placeholder="Name" required>
+            <p class="formElement">Mobile Number</p>
+            <input type="text" id="card" placeholder="mobilenumber" size="16"required>
+            <p class="formElement">PinCode</p>
+            <input type="month" id="PinCode" placeholder="pincode" required>
+            <p class="formElement">Drivers ID</p>
+            <input type="text" id="driversid" placeholder="Drivers Id" size="3" required>
+        </form>
+        <button class="button" onclick="submit()"><span>Next</span></button>
+    </div>
+    <script>
+        function submit() {
+            var name = document.getElementById("name").value;
+            var card = document.getElementById("card").value;
+            var expiration = document.getElementById("PinCode").value;
+            var security = document.getElementById("driversid").value;
+
+            if ( !(name && card && expiration && security) ) {
+                alert("Please enter all the required fields");
+                return;
+            }
+            window.location.href = "MyAccount.html";
+        }
+    </script>
+</body>
+</html>
