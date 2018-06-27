@@ -23,10 +23,8 @@ class Server(Flask):
             kwargs.setdefault('import_name', __name__)
         Flask.__init__(self, *args, **kwargs)
 
-        self.secret_key = Config.SECRET_KEY
-        self.testing = Config.TESTING
-        self.config['SECURITY_PASSWORD_SALT'] = Config.SECURITY_PASSWORD_SALT
-        self.env = Config.ENVIRONMENT
+        
+        
         self.errorhandler(404)(ErrorHandlers.not_found)
         self.errorhandler(400)(ErrorHandlers.bad_request)
 
@@ -37,4 +35,4 @@ class Server(Flask):
 APP = Server()
 
 if __name__ == '__main__':
-    APP.run(debug=Config.DEBUG, host=Config.HOST, port=Config.PORT)
+    APP.run()

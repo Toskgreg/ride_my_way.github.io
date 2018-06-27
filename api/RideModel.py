@@ -13,3 +13,4 @@ class RideModel(JSONSerializable):
         self.status = "available"
         self.taken_by = None
        
+    

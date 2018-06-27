@@ -1,19 +1,45 @@
 """
 Config file contains global CONSTANTS
 """
+import os
 
 
 class Config:
-    """
-    System configuration settings
-    They can be changed at any time.
-    """
-    HOST = "0.0.0.0"
-    PORT = 5000
-
-    SECRET_KEY = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
-    SECURITY_PASSWORD_SALT = 'efa27950565790fbaecfb5fb64b84a6a7c48d06d'
+    """Parent settings file"""
 
     DEBUG = True
-    TESTING = True
-    ENVIRONMENT = "development"
+    
+
+
+class DevelopmentConfig(Config):
+    """Development configuration"""
+
+    DEBUG = True
+
+
+class TestingConfig(Config):
+    """Configurations for Testing"""
+
+    Testing = True
+    DEBUG = True
+
+
+class StagingConfig(Config):
+    """Configurations for staging"""
+
+    DEBUG = False
+
+
+class ProductionConfig(Config):
+    """Configurations for Production."""
+
+    DEBUG = False
+    TESTING = False
+
+
+APP_CONFIG = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'staging': StagingConfig,
+    'production': ProductionConfig,
+}

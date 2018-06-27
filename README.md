@@ -7,7 +7,7 @@ Ride-my App is a carpooling application that provides drivers with the ability t
 ***Features***
 
  * Users ==(Driver and pasenger)== can fetch all ride offers
- * Users  can fetch a specific ride offer
+ * Users c can fetch a specific ride offer
  * Driver creates a ride offer
  * Passengers make a request to join a ride.
  * Driver can deletes and update ride offer
@@ -27,5 +27,4 @@ Ride-my App is a carpooling application that provides drivers with the ability t
 
 ## Coveralls test Coverage Status
 
-<a href='https://coveralls.io/github/Toskgreg/ridemyway_final?branch=develop'><img src='https://coveralls.io/repos/github/Toskgreg/ridemyway_final/badge.svg?branch=develop' alt='Coverage Status' /></a>
 

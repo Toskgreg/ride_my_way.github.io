@@ -1,6 +1,6 @@
 language: python
 python:
-- '3.6.5'
+- '3.6'
 sudo: false
 cache: pip3
 install:
@@ -19,7 +19,7 @@ env:
   - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct;
     else git log -1 --skip 1 --pretty=format:%ct; fi)
   # - CODECLIMATE_REPO_TOKEN=[token]
-  - secure:5a053db67b01a42fc608e95f38b5a52790846c063ea71497e2f0a3787dac53ef
+  - secure:
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
