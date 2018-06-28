@@ -6,9 +6,3 @@ Flask-API==1.0
 
 
 
-
-psycopg2==2.7.5
-python-dateutil==2.7.3
-python-editor==1.0.3
-six==1.11.0
-
