@@ -20,15 +20,16 @@ class RidesTestCase(unittest.TestCase):
 
     def test_ride_offer(self):
         """Test API can create a ride (POST request)"""
-        res = self.client().post('api/v1/ride/', data=self.ride)
-        self.assertEqual(res.status_code, 201)
-        self.assertIn('Mutungo', str(res.data))
-        self.assertIn('Kamwokya', str(res.data))
+        res1 = self.client().post('api/v1/ride/', data=self.ride)
+        self.assertEqual(res1.status_code, 201)
+        self.assertIn('Mutungo', str(res1.data))
+        self.assertIn('Kamwokya', str(res1.data))
 
     def test_api_view_all_ride_offers(self):
         """Test API can get a ride (GET request)."""
         res = self.client().post('/api/v1/ride/', data=self.ride)
         self.assertEqual(res.status_code, 201)
+       
         
         self.assertIn('Mutungo', str(res.data))
         self.assertIn('Kamwokya', str(res.data))
