@@ -1,0 +1,5 @@
+{
+  "test_rides.py::RidesTestCase::test_api_view_all_ride_offers": true,
+  "test_rides.py::RidesTestCase::test_bucketlist_can_be_edited": true,
+  "test_rides.py::RidesTestCase::test_bucketlist_deletion": true
+}
