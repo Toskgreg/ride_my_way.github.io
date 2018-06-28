@@ -4,7 +4,7 @@ python:
 sudo: false
 cache: pip3
 install:
-- pip3 install -r api/requirements.txt
+- pip3 install -r requirements.txt
 - pip3 install coverage
 - pip3 install coveralls
 script:
