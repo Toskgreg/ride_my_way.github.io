@@ -14,7 +14,7 @@ Ride-my App is a carpooling application that provides drivers with the ability t
 
 ## Travis build status
 
-https://travis-ci.org/Toskgreg/ridemyway_final.svg?branch=develop
+[![Build Status](https://travis-ci.org/Toskgreg/ridemyway_final.svg?branch=develop)](https://travis-ci.org/Toskgreg/ridemyway_final)
 
 ## Code Climate Maintainability badge
 
