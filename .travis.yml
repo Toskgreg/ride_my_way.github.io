@@ -9,8 +9,8 @@ install:
 - pip3 install coveralls
 script:
 - pytest
-- cd api
-- coverage3 run test_views.py
+- 
+- coverage3 run test_rides.py
 - coveralls
 - cd ..
 env:
