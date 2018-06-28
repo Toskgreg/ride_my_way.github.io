@@ -30,7 +30,7 @@ class RidesTestCase(unittest.TestCase):
         res = self.client().post('/api/v1/ride/', data=self.ride)
         self.assertEqual(res.status_code, 201)
         
-        self.assertIn('Mutungoo', str(res.data))
+        self.assertIn('Mutungo', str(res.data))
         self.assertIn('Kamwokya', str(res.data))
 
     def test_api_view_ride_offer_by_id(self):
