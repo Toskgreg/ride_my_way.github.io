@@ -7,10 +7,6 @@ from flask_sqlalchemy import SQLAlchemy
 # local import
 from instance.config import app_config
 
-# initialize sql-alchemy
-
-
-# existing import remains
 
 from app.models import Rides
 from flask import request, jsonify, abort
@@ -22,9 +18,7 @@ def create_app(config_name):
     
     
 
-    #####################
-    # existing code remains #
-    #####################
+
     @app.route('/api/v1/ride/', methods=['POST', 'GET'])
     def rides():
         if request.method == "POST":
@@ -42,23 +36,8 @@ def create_app(config_name):
                 })
                 response.status_code = 201
                 return response
-        else:
-            # GET
+        
             
-            results = []
-
-
-            for ride in ride:
-                obj = {
-                    'id': ride.id,
-                    'start_address': ride.start_address,
-                    'destination': ride.destination,
-                   
-                }
-                results.append(obj)
-            response = jsonify(results)
-            response.status_code = 200
-            return response
 
     
     @app.route('/api/v1/ride/<int:id>', methods=['GET', 'PUT', 'DELETE'])

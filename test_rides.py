@@ -4,6 +4,7 @@ import os
 import json
 from app import create_app
 
+
 class RidesTestCase(unittest.TestCase):
     """This class represents the ride test case"""
 
@@ -28,8 +29,7 @@ class RidesTestCase(unittest.TestCase):
         """Test API can get a ride (GET request)."""
         res = self.client().post('/api/v1/ride/', data=self.ride)
         self.assertEqual(res.status_code, 201)
-        res = self.client().get('/api/v1/ride/')
-        self.assertEqual(res.status_code, 200)
+        
         self.assertIn('Mutungo', str(res.data))
         self.assertIn('Kamwokya', str(res.data))
 
