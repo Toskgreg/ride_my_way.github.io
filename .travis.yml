@@ -20,7 +20,7 @@ env:
     else git log -1 --skip 1 --pretty=format:%ct; fi)
   # - CODECLIMATE_REPO_TOKEN=[token]
   - secure:
-before_script:  5a053db67b01a42fc608e95f38b5a52790846c063ea71497e2f0a3787dac53ef
+before_script:  
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
