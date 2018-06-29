@@ -1,7 +1,7 @@
 [
-  "test_rides.py::RidesTestCase::test_api_view_all_ride_offers",
-  "test_rides.py::RidesTestCase::test_api_view_ride_offer_by_id",
-  "test_rides.py::RidesTestCase::test_ride_offer",
-  "test_rides.py::RidesTestCase::test_rides_can_be_edited",
-  "test_rides.py::RidesTestCase::test_rides_deletion"
+  "test_rides.py::RidesTestCase::test_addOne",
+  "test_rides.py::RidesTestCase::test_getride",
+  "test_rides.py::RidesTestCase::test_index",
+  "test_rides.py::RidesTestCase::test_returnAll",
+  "test_rides.py::RidesTestCase::test_returnOne"
 ]

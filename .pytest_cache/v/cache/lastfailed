@@ -1,4 +1,12 @@
 {
+  "test_rides.py::RidesTestCase::test_addOne": true,
+  "test_rides.py::RidesTestCase::test_api_view_all_ride_offers": true,
+  "test_rides.py::RidesTestCase::test_api_view_ride_offer_by_id": true,
+  "test_rides.py::RidesTestCase::test_auto_id": true,
   "test_rides.py::RidesTestCase::test_bucketlist_can_be_edited": true,
-  "test_rides.py::RidesTestCase::test_bucketlist_deletion": true
+  "test_rides.py::RidesTestCase::test_bucketlist_deletion": true,
+  "test_rides.py::RidesTestCase::test_ride": true,
+  "test_rides.py::RidesTestCase::test_ride_offer": true,
+  "test_rides.py::RidesTestCase::test_rides_can_be_edited": true,
+  "test_rides.py::RidesTestCase::test_rides_deletion": true
 }
