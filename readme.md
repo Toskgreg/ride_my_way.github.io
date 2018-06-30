@@ -1,7 +1,7 @@
 RIDE MY WAY APPLICATION
 [![Build Status](https://travis-ci.org/Toskgreg/ridemyway_final.svg?branch=develop1)](https://travis-ci.org/Toskgreg/ridemyway_final)+
 [![Coverage Status](https://coveralls.io/repos/github/Toskgreg/ridemyway_final/badge.svg?branch=develop1)](https://coveralls.io/github/Toskgreg/ridemyway_final?branch=develop1)+
-[![Maintainability](https://api.codeclimate.com/v1/badges/15597320f03cc618b637/maintainability)](https://codeclimate.com/github/Toskgreg/KLA-09-Ride-my-way/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c7a237f8f2571998a995/maintainability)](https://codeclimate.com/github/Toskgreg/ridemyway_final/maintainability)
 
 Project Overview
 Ride-my App is a carpooling application that provides drivers with the ability to create ride offers
