@@ -11,7 +11,10 @@ template = {
 
 Swagger(app, template=template)
 
+
 @app.route('/')
 def index():
     return redirect('/')
+
+
 app.register_blueprint(rides)

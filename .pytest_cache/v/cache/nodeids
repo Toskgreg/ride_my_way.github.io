@@ -1,7 +1,0 @@
-[
-  "test_rides.py::RidesTestCase::test_addOne",
-  "test_rides.py::RidesTestCase::test_getride",
-  "test_rides.py::RidesTestCase::test_index",
-  "test_rides.py::RidesTestCase::test_returnAll",
-  "test_rides.py::RidesTestCase::test_returnOne"
-]
